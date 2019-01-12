@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span>Bills</span>
+        <!-- <select class ="drop-down-list  float-right">
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+           
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+               
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+              
+          </select> -->
+         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bills" [routerLink]="['/bills/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Bills
+            </span>
+        </button> 
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="bills">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Company Name</span></th>
+            <th><span>Payment Total</span></th>
+            <th><span>User Details</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bills of bills ;trackBy: trackId">
+                <td><a [routerLink]="['/bills', bills.id, 'view' ]">{{bills.id}}</a></td>
+                <td><a [routerLink]="['../bill-item', bills.companyName, 'view'  ]">{{bills.companyName}}</a></td>
+                <td>{{bills.paymentTotal}}</td>
+                <td>
+                    <div *ngIf="bills.userDetails">
+                        <a [routerLink]="['../user-details', bills.userDetails?.id, 'view' ]" >{{bills.userDetails?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/bills', bills.id, 'view' ]"
+                                class="btn btn-info btn-sm btn-paid">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <!-- <button type="submit"
+                                [routerLink]="['/bills', bills.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bills/'+ bills.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>  -->
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
